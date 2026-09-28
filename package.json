@@ -1,0 +1,29 @@
+{
+  "name": "besd-fn-023",
+  "version": "1.0.0",
+  "description": "Express and MySQL course enrollment registration API for student b671103023",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js",
+    "test": "mocha --reporter spec --timeout 10000",
+    "test:report": "mocha --reporter mochawesome --reporter-options reportDir=test-report,reportFilename=integration-tests,html=true,json=true --timeout 10000",
+    "test:postman": "npx --yes --package newman@6.2.1 newman run postman/BESD-FN-023.postman_collection.json --reporters cli,json --reporter-json-export test-report/postman-results/postman-run.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.4"
+  },
+  "devDependencies": {
+    "chai": "^5.2.1",
+    "mocha": "^11.7.1",
+    "mochawesome": "^7.1.4",
+    "supertest": "^7.1.4"
+  }
+}

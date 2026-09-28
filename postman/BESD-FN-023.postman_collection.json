@@ -1,0 +1,361 @@
+{
+  "info": {
+    "name": "BESD-FN-023 User API",
+    "description": "Postman verification for all implemented API routes. Targets a separate local database populated with fictional test records at http://127.0.0.1:3001.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:3001"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Health API returns 200 OK', function () { pm.response.to.have.status(200); pm.expect(pm.response.json().status).to.eql('ok'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /users",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/users"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200 for /users', function () { pm.response.to.have.status(200); });",
+              "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /user",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/user"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200 for /user', function () { pm.response.to.have.status(200); });",
+              "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /users/list",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/users/list"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200 for /users/list', function () { pm.response.to.have.status(200); });",
+              "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /user/list",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/user/list"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200 for /user/list', function () { pm.response.to.have.status(200); });",
+              "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST /users/signup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userEmail\": \"{{postmanSignupUsers}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/users/signup"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('postmanSignupUsers', 'postman.postmanSignupUsers.' + Date.now() + '@example.com');"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201 for /users/signup', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST /user/signup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userEmail\": \"{{postmanSignupUser}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/user/signup"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('postmanSignupUser', 'postman.postmanSignupUser.' + Date.now() + '@example.com');"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201 for /user/signup', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST /user",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userEmail\": \"{{postmanUser}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/user"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('postmanUser', 'postman.postmanUser.' + Date.now() + '@example.com');"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201 for /user', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST /users",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userEmail\": \"{{postmanUsers}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/users"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('postmanUsers', 'postman.postmanUsers.' + Date.now() + '@example.com');"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201 for /users', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "IT-3 Duplicate email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userEmail\": \"student1@example.test\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Duplicate\",\n  \"userLastName\": \"Test\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/users"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Duplicate email returns 409', function () { pm.response.to.have.status(409); pm.expect(pm.response.json().error).to.match(/email already exists/i); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "IT-4 Incomplete registration",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userEmail\": \"incomplete@example.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/users"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Incomplete registration returns 400', function () { pm.response.to.have.status(400); pm.expect(pm.response.json().error).to.match(/missing mandatory fields/i); pm.expect(pm.response.json().missingFields).to.include('userPassword'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Verify all registrations and GET response",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/users"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('All 4 POST route variants registered a user', function () { pm.response.to.have.status(200); const users=pm.response.json(); pm.expect(users).to.have.length(7); const emails=['postmanSignupUsers','postmanSignupUser','postmanUser','postmanUsers'].map(function(k){return pm.collectionVariables.get(k).toLowerCase();}); emails.forEach(function(email){pm.expect(users.some(function(user){return user.userEmail===email;}),email).to.eql(true);}); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

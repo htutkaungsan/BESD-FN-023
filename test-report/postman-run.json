@@ -1,0 +1,5810 @@
+{
+  "collection": {
+    "item": [
+      {
+        "id": "f243cd83-f998-4429-8f06-c33326ca68ef",
+        "name": "Health check",
+        "request": {
+          "url": {
+            "path": [
+              "health"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "5d6b9df4-19cb-4c09-9efa-3278f04e2b2e",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Health API returns 200 OK', function () { pm.response.to.have.status(200); pm.expect(pm.response.json().status).to.eql('ok'); });"
+              ],
+              "_lastExecutionId": "fbb4c1bd-c0c8-44d7-aa7d-c2ebed5f8a29"
+            }
+          }
+        ]
+      },
+      {
+        "id": "6ae9b05c-21c7-48ae-8cae-c2b3b023f052",
+        "name": "GET /users",
+        "request": {
+          "url": {
+            "path": [
+              "users"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "713dbb3f-ce7b-4c26-8f70-972ad869fe50",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('HTTP 200 for /users', function () { pm.response.to.have.status(200); });",
+                "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+              ],
+              "_lastExecutionId": "c5d4de16-c00a-4986-92f1-5ff93df75ffd"
+            }
+          }
+        ]
+      },
+      {
+        "id": "5dc8263c-4525-4998-9b3a-a547163000de",
+        "name": "GET /user",
+        "request": {
+          "url": {
+            "path": [
+              "user"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "cc7201fe-49a8-4424-a68e-b357626c6f56",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('HTTP 200 for /user', function () { pm.response.to.have.status(200); });",
+                "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+              ],
+              "_lastExecutionId": "e2eac115-2c6e-4eb4-a4a1-347018892db9"
+            }
+          }
+        ]
+      },
+      {
+        "id": "366e0c0b-902e-4971-a198-63ead7e12acb",
+        "name": "GET /users/list",
+        "request": {
+          "url": {
+            "path": [
+              "users",
+              "list"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "5cca64ad-263b-41c5-a57b-d4c480ffcd4a",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('HTTP 200 for /users/list', function () { pm.response.to.have.status(200); });",
+                "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+              ],
+              "_lastExecutionId": "6b4df5ef-bd49-4391-9b1f-597f252aaeb7"
+            }
+          }
+        ]
+      },
+      {
+        "id": "29417435-e49e-4cfc-b184-db77ff2c969e",
+        "name": "GET /user/list",
+        "request": {
+          "url": {
+            "path": [
+              "user",
+              "list"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "05854d22-9712-4a94-937c-1909a6c318fc",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('HTTP 200 for /user/list', function () { pm.response.to.have.status(200); });",
+                "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+              ],
+              "_lastExecutionId": "198edc17-12bc-47b9-a133-7f35a69e435c"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ae6e43db-7b9f-452f-a8e7-6e5e4f340bcd",
+        "name": "POST /users/signup",
+        "request": {
+          "url": {
+            "path": [
+              "users",
+              "signup"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"{{postmanSignupUsers}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "prerequest",
+            "script": {
+              "id": "1672ad65-e49e-46bd-a653-95a010d34635",
+              "type": "text/javascript",
+              "exec": [
+                "pm.collectionVariables.set('postmanSignupUsers', 'postman.postmanSignupUsers.' + Date.now() + '@example.com');"
+              ],
+              "_lastExecutionId": "76961316-c939-4fd1-b952-fc6c7cc89e6d"
+            }
+          },
+          {
+            "listen": "test",
+            "script": {
+              "id": "91f836b3-6d4b-4fee-93ee-3bd024e05c24",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('HTTP 201 for /users/signup', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+              ],
+              "_lastExecutionId": "b26bc7d6-ad75-4218-a8b7-a3ce5a0da931"
+            }
+          }
+        ]
+      },
+      {
+        "id": "3609f2f4-c29a-4fe6-960e-ea4823e9b5ff",
+        "name": "POST /user/signup",
+        "request": {
+          "url": {
+            "path": [
+              "user",
+              "signup"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"{{postmanSignupUser}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "prerequest",
+            "script": {
+              "id": "ea1819f9-56c1-463c-a083-b3270c76e43f",
+              "type": "text/javascript",
+              "exec": [
+                "pm.collectionVariables.set('postmanSignupUser', 'postman.postmanSignupUser.' + Date.now() + '@example.com');"
+              ],
+              "_lastExecutionId": "fd05a9d9-3cf4-4dca-b541-e16ee558d378"
+            }
+          },
+          {
+            "listen": "test",
+            "script": {
+              "id": "fc686346-c7bf-45ba-bf9c-f040c76b0b71",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('HTTP 201 for /user/signup', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+              ],
+              "_lastExecutionId": "7c86d8d6-f95e-4323-a9b8-f2387a0aa327"
+            }
+          }
+        ]
+      },
+      {
+        "id": "324ec124-0655-40af-8d20-7b153e25f319",
+        "name": "POST /user",
+        "request": {
+          "url": {
+            "path": [
+              "user"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"{{postmanUser}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "prerequest",
+            "script": {
+              "id": "8adfd4c8-d77f-43c0-bd00-e66859a7914f",
+              "type": "text/javascript",
+              "exec": [
+                "pm.collectionVariables.set('postmanUser', 'postman.postmanUser.' + Date.now() + '@example.com');"
+              ],
+              "_lastExecutionId": "eb80cc96-9f02-4378-bce2-6fb2276ffc26"
+            }
+          },
+          {
+            "listen": "test",
+            "script": {
+              "id": "0713e957-0aa5-4bc1-8906-3300a8bfb0c1",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('HTTP 201 for /user', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+              ],
+              "_lastExecutionId": "9157ac6c-d1ec-46fe-b036-2489b93a6fe3"
+            }
+          }
+        ]
+      },
+      {
+        "id": "4e87eaa1-5fe4-48e0-95c9-ef003209f8ba",
+        "name": "POST /users",
+        "request": {
+          "url": {
+            "path": [
+              "users"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"{{postmanUsers}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "prerequest",
+            "script": {
+              "id": "ec307476-1756-41f3-a6cc-b381e51bc299",
+              "type": "text/javascript",
+              "exec": [
+                "pm.collectionVariables.set('postmanUsers', 'postman.postmanUsers.' + Date.now() + '@example.com');"
+              ],
+              "_lastExecutionId": "51448fbc-8e9b-4acf-bd0a-906d9c40acbf"
+            }
+          },
+          {
+            "listen": "test",
+            "script": {
+              "id": "4d569ab5-8ef6-4948-878f-de7f61b88341",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('HTTP 201 for /users', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+              ],
+              "_lastExecutionId": "79f40523-c67e-4767-a74c-b760bfef8e24"
+            }
+          }
+        ]
+      },
+      {
+        "id": "7a3a4b0f-b942-4ed2-9bab-875d5062a2e6",
+        "name": "IT-3 Duplicate email",
+        "request": {
+          "url": {
+            "path": [
+              "users"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"student1@example.test\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Duplicate\",\n  \"userLastName\": \"Test\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "5047872d-f1c8-40af-b9e7-e512d4199203",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Duplicate email returns 409', function () { pm.response.to.have.status(409); pm.expect(pm.response.json().error).to.match(/email already exists/i); });"
+              ],
+              "_lastExecutionId": "90e0b0e1-6004-4b67-9c00-0bc0ceb4df13"
+            }
+          }
+        ]
+      },
+      {
+        "id": "a1b3d808-f860-4ded-9529-eed457545947",
+        "name": "IT-4 Incomplete registration",
+        "request": {
+          "url": {
+            "path": [
+              "users"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"incomplete@example.com\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "e1a5026a-e906-433e-b4c6-3c8b93f1900a",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Incomplete registration returns 400', function () { pm.response.to.have.status(400); pm.expect(pm.response.json().error).to.match(/missing mandatory fields/i); pm.expect(pm.response.json().missingFields).to.include('userPassword'); });"
+              ],
+              "_lastExecutionId": "b5b81ef7-48af-47e2-aab2-47a14503b9a1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ed89106f-e6ee-41bf-838c-7c8a3363ec92",
+        "name": "Verify all registrations and GET response",
+        "request": {
+          "url": {
+            "path": [
+              "users"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "304def72-ada1-4d82-955b-e86ca57e433c",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('All 4 POST route variants registered a user', function () { pm.response.to.have.status(200); const users=pm.response.json(); pm.expect(users).to.have.length(7); const emails=['postmanSignupUsers','postmanSignupUser','postmanUser','postmanUsers'].map(function(k){return pm.collectionVariables.get(k).toLowerCase();}); emails.forEach(function(email){pm.expect(users.some(function(user){return user.userEmail===email;}),email).to.eql(true);}); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+              ],
+              "_lastExecutionId": "cdc1df32-1f8e-447f-a2ec-c6746034e8ba"
+            }
+          }
+        ]
+      }
+    ],
+    "event": [],
+    "variable": [
+      {
+        "type": "any",
+        "value": "http://127.0.0.1:3001",
+        "key": "baseUrl"
+      }
+    ],
+    "info": {
+      "_postman_id": "086158f0-359a-4882-8a03-8e13d886f4f3",
+      "name": "BESD-FN-023 User API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": {
+        "content": "Postman verification for all implemented API routes. Targets a separate local database populated with fictional test records at http://127.0.0.1:3001.",
+        "type": "text/plain"
+      }
+    }
+  },
+  "environment": {
+    "id": "45798b85-b2bb-4401-86fb-2a4e96068913",
+    "values": []
+  },
+  "globals": {
+    "id": "aabbb51b-2c3c-499d-847c-1db6762a7aba",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 12,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 16,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 12,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 12,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 12,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 16,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 12,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 4,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 36.666666666666664,
+      "responseMin": 3,
+      "responseMax": 97,
+      "responseSd": 37.45515837490063,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1790588450409,
+      "completed": 1790588450996
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 12,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "d0253ea6-8c4e-49a8-9155-b964ad83ab86",
+          "httpRequestId": "d9f18a15-9e54-4013-8217-0babcb09844d"
+        },
+        "item": {
+          "id": "f243cd83-f998-4429-8f06-c33326ca68ef",
+          "name": "Health check",
+          "request": {
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5d6b9df4-19cb-4c09-9efa-3278f04e2b2e",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Health API returns 200 OK', function () { pm.response.to.have.status(200); pm.expect(pm.response.json().status).to.eql('ok'); });"
+                ],
+                "_lastExecutionId": "fbb4c1bd-c0c8-44d7-aa7d-c2ebed5f8a29"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "health"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "da9a2d90-0d98-4abb-b9cc-f6e547416213",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "02c8a619-a196-4596-925e-ff70e544d6d3",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "15"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              111,
+              107,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 18,
+          "responseSize": 15
+        },
+        "id": "f243cd83-f998-4429-8f06-c33326ca68ef",
+        "assertions": [
+          {
+            "assertion": "Health API returns 200 OK",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "8aca864b-5f46-492e-af76-eb86642fc6eb",
+          "length": 12,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "eeb75675-9516-4f6e-9e00-661f14c9f8e6"
+        },
+        "item": {
+          "id": "6ae9b05c-21c7-48ae-8cae-c2b3b023f052",
+          "name": "GET /users",
+          "request": {
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "713dbb3f-ce7b-4c26-8f70-972ad869fe50",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200 for /users', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+                ],
+                "_lastExecutionId": "c5d4de16-c00a-4986-92f1-5ff93df75ffd"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "users"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "f4a8fdb9-a07b-4689-83ba-a980302dbb46",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "93727cb8-718b-4663-befb-4de2168ff330",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "432"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1b0-MYh6+R9Dg8AHwExZXW4IkSNbqU4\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              49,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              79,
+              110,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              49,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              49,
+              45,
+              48,
+              49,
+              45,
+              48,
+              49,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              53,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              50,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              119,
+              111,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              50,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              50,
+              45,
+              48,
+              50,
+              45,
+              48,
+              50,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              52,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              51,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              104,
+              114,
+              101,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              51,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              51,
+              45,
+              48,
+              51,
+              45,
+              48,
+              51,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              51,
+              125,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 6,
+          "responseSize": 432
+        },
+        "id": "6ae9b05c-21c7-48ae-8cae-c2b3b023f052",
+        "assertions": [
+          {
+            "assertion": "HTTP 200 for /users",
+            "skipped": false
+          },
+          {
+            "assertion": "Returns 3 users and hides passwords",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "1d760e98-5763-4ee7-b2af-38e6f9956270",
+          "length": 12,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "7557454b-e742-41dd-b325-3afd835dd7ed"
+        },
+        "item": {
+          "id": "5dc8263c-4525-4998-9b3a-a547163000de",
+          "name": "GET /user",
+          "request": {
+            "url": {
+              "path": [
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cc7201fe-49a8-4424-a68e-b357626c6f56",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200 for /user', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+                ],
+                "_lastExecutionId": "e2eac115-2c6e-4eb4-a4a1-347018892db9"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "user"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "f34beaed-2d64-4a12-8d85-27b6144eb256",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "eec27a86-e363-41dc-8d86-cdac2628486b",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "432"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1b0-MYh6+R9Dg8AHwExZXW4IkSNbqU4\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              49,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              79,
+              110,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              49,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              49,
+              45,
+              48,
+              49,
+              45,
+              48,
+              49,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              53,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              50,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              119,
+              111,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              50,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              50,
+              45,
+              48,
+              50,
+              45,
+              48,
+              50,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              52,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              51,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              104,
+              114,
+              101,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              51,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              51,
+              45,
+              48,
+              51,
+              45,
+              48,
+              51,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              51,
+              125,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 3,
+          "responseSize": 432
+        },
+        "id": "5dc8263c-4525-4998-9b3a-a547163000de",
+        "assertions": [
+          {
+            "assertion": "HTTP 200 for /user",
+            "skipped": false
+          },
+          {
+            "assertion": "Returns 3 users and hides passwords",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "8e30094e-4cba-40f2-8b59-9cbf7c17073d",
+          "length": 12,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "a4c020d4-2759-403e-b4c1-31bfe586fd6d"
+        },
+        "item": {
+          "id": "366e0c0b-902e-4971-a198-63ead7e12acb",
+          "name": "GET /users/list",
+          "request": {
+            "url": {
+              "path": [
+                "users",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5cca64ad-263b-41c5-a57b-d4c480ffcd4a",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200 for /users/list', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+                ],
+                "_lastExecutionId": "6b4df5ef-bd49-4391-9b1f-597f252aaeb7"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "users",
+              "list"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "fd4e21ca-fd85-467e-9abf-5c2974030934",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "ac1aee62-c1c8-4bca-ab53-47058d48ac79",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "432"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1b0-MYh6+R9Dg8AHwExZXW4IkSNbqU4\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              49,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              79,
+              110,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              49,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              49,
+              45,
+              48,
+              49,
+              45,
+              48,
+              49,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              53,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              50,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              119,
+              111,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              50,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              50,
+              45,
+              48,
+              50,
+              45,
+              48,
+              50,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              52,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              51,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              104,
+              114,
+              101,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              51,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              51,
+              45,
+              48,
+              51,
+              45,
+              48,
+              51,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              51,
+              125,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 3,
+          "responseSize": 432
+        },
+        "id": "366e0c0b-902e-4971-a198-63ead7e12acb",
+        "assertions": [
+          {
+            "assertion": "HTTP 200 for /users/list",
+            "skipped": false
+          },
+          {
+            "assertion": "Returns 3 users and hides passwords",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "a120a052-7a2e-453d-998d-90120242cdac",
+          "length": 12,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "fd13018d-b0a1-42eb-93cb-b6c0a39d4034"
+        },
+        "item": {
+          "id": "29417435-e49e-4cfc-b184-db77ff2c969e",
+          "name": "GET /user/list",
+          "request": {
+            "url": {
+              "path": [
+                "user",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "05854d22-9712-4a94-937c-1909a6c318fc",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200 for /user/list', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Returns 3 users and hides passwords', function () { const users=pm.response.json(); pm.expect(users).to.be.an('array').with.length(3); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+                ],
+                "_lastExecutionId": "198edc17-12bc-47b9-a133-7f35a69e435c"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "user",
+              "list"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "54441eaf-4840-4664-b2d7-6acf93677c33",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "f04c531e-1566-46fa-b319-7bfafdf0fb51",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "432"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1b0-MYh6+R9Dg8AHwExZXW4IkSNbqU4\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              49,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              79,
+              110,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              49,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              49,
+              45,
+              48,
+              49,
+              45,
+              48,
+              49,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              53,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              50,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              119,
+              111,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              50,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              50,
+              45,
+              48,
+              50,
+              45,
+              48,
+              50,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              52,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              51,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              104,
+              114,
+              101,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              51,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              51,
+              45,
+              48,
+              51,
+              45,
+              48,
+              51,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              51,
+              125,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 3,
+          "responseSize": 432
+        },
+        "id": "29417435-e49e-4cfc-b184-db77ff2c969e",
+        "assertions": [
+          {
+            "assertion": "HTTP 200 for /user/list",
+            "skipped": false
+          },
+          {
+            "assertion": "Returns 3 users and hides passwords",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "18119992-8e38-43c9-a668-9f9dd38dc364",
+          "length": 12,
+          "cycles": 1,
+          "position": 5,
+          "iteration": 0,
+          "httpRequestId": "f161fb22-8de6-467d-b9b0-b83e1fb7591e"
+        },
+        "item": {
+          "id": "ae6e43db-7b9f-452f-a8e7-6e5e4f340bcd",
+          "name": "POST /users/signup",
+          "request": {
+            "url": {
+              "path": [
+                "users",
+                "signup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userEmail\": \"{{postmanSignupUsers}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1672ad65-e49e-46bd-a653-95a010d34635",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('postmanSignupUsers', 'postman.postmanSignupUsers.' + Date.now() + '@example.com');"
+                ],
+                "_lastExecutionId": "76961316-c939-4fd1-b952-fc6c7cc89e6d"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "91f836b3-6d4b-4fee-93ee-3bd024e05c24",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201 for /users/signup', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+                ],
+                "_lastExecutionId": "b26bc7d6-ad75-4218-a8b7-a3ce5a0da931"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "users",
+              "signup"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "5e90ef70-1faf-4ac2-a48f-9e28918119b2",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "222",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"postman.postmanSignupUsers.1790588450510@example.com\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "18b46f3d-5154-4e8b-8d78-ff04dd6666bf",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "21"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"15-FXWlH0PvnD0L5vH8jwewd9mu5yg\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              67,
+              114,
+              101,
+              97,
+              116,
+              101,
+              100,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 80,
+          "responseSize": 21
+        },
+        "id": "ae6e43db-7b9f-452f-a8e7-6e5e4f340bcd",
+        "assertions": [
+          {
+            "assertion": "HTTP 201 for /users/signup",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "3ccd1c2c-c739-49dd-ab2a-0ff699f9d102",
+          "length": 12,
+          "cycles": 1,
+          "position": 6,
+          "iteration": 0,
+          "httpRequestId": "17a4a494-0983-42e7-aa9e-71805fc5f954"
+        },
+        "item": {
+          "id": "3609f2f4-c29a-4fe6-960e-ea4823e9b5ff",
+          "name": "POST /user/signup",
+          "request": {
+            "url": {
+              "path": [
+                "user",
+                "signup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userEmail\": \"{{postmanSignupUser}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ea1819f9-56c1-463c-a083-b3270c76e43f",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('postmanSignupUser', 'postman.postmanSignupUser.' + Date.now() + '@example.com');"
+                ],
+                "_lastExecutionId": "fd05a9d9-3cf4-4dca-b541-e16ee558d378"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "fc686346-c7bf-45ba-bf9c-f040c76b0b71",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201 for /user/signup', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+                ],
+                "_lastExecutionId": "7c86d8d6-f95e-4323-a9b8-f2387a0aa327"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "user",
+              "signup"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "2eda3e2f-1e7a-4848-bcdb-d08d3a37f454",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "221",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"postman.postmanSignupUser.1790588450603@example.com\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "d33e194a-3bcb-4df2-88b9-6b98f7bf72aa",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "21"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"15-FXWlH0PvnD0L5vH8jwewd9mu5yg\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              67,
+              114,
+              101,
+              97,
+              116,
+              101,
+              100,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 79,
+          "responseSize": 21
+        },
+        "id": "3609f2f4-c29a-4fe6-960e-ea4823e9b5ff",
+        "assertions": [
+          {
+            "assertion": "HTTP 201 for /user/signup",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "a382a9c3-4964-4f1d-af6d-ac6c4fd2d3d0",
+          "length": 12,
+          "cycles": 1,
+          "position": 7,
+          "iteration": 0,
+          "httpRequestId": "6b43f3cc-5160-4a98-9b02-981f6073b1ed"
+        },
+        "item": {
+          "id": "324ec124-0655-40af-8d20-7b153e25f319",
+          "name": "POST /user",
+          "request": {
+            "url": {
+              "path": [
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userEmail\": \"{{postmanUser}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "8adfd4c8-d77f-43c0-bd00-e66859a7914f",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('postmanUser', 'postman.postmanUser.' + Date.now() + '@example.com');"
+                ],
+                "_lastExecutionId": "eb80cc96-9f02-4378-bce2-6fb2276ffc26"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "0713e957-0aa5-4bc1-8906-3300a8bfb0c1",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201 for /user', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+                ],
+                "_lastExecutionId": "9157ac6c-d1ec-46fe-b036-2489b93a6fe3"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "user"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "a832a894-dd60-47d8-9a49-fbefcfe89eeb",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "215",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"postman.postmanUser.1790588450698@example.com\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "6bfe1046-652a-4892-9c78-bfdba1dc5cc9",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "21"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"15-FXWlH0PvnD0L5vH8jwewd9mu5yg\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              67,
+              114,
+              101,
+              97,
+              116,
+              101,
+              100,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 97,
+          "responseSize": 21
+        },
+        "id": "324ec124-0655-40af-8d20-7b153e25f319",
+        "assertions": [
+          {
+            "assertion": "HTTP 201 for /user",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "d0d331d8-1185-4833-894c-6b95e1b51b14",
+          "length": 12,
+          "cycles": 1,
+          "position": 8,
+          "iteration": 0,
+          "httpRequestId": "8a723107-8040-4af7-bac1-b26dc0ad0511"
+        },
+        "item": {
+          "id": "4e87eaa1-5fe4-48e0-95c9-ef003209f8ba",
+          "name": "POST /users",
+          "request": {
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userEmail\": \"{{postmanUsers}}\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ec307476-1756-41f3-a6cc-b381e51bc299",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('postmanUsers', 'postman.postmanUsers.' + Date.now() + '@example.com');"
+                ],
+                "_lastExecutionId": "51448fbc-8e9b-4acf-bd0a-906d9c40acbf"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "4d569ab5-8ef6-4948-878f-de7f61b88341",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201 for /users', function () { pm.response.to.have.status(201); pm.expect(pm.response.json().message).to.eql('Created'); });"
+                ],
+                "_lastExecutionId": "79f40523-c67e-4767-a74c-b760bfef8e24"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "users"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "d964ce24-a48f-4da1-86fb-07cdc7ca3a69",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "216",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"postman.postmanUsers.1790588450806@example.com\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Postman\",\n  \"userLastName\": \"Student\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "43ca0207-eb08-419f-8afb-e9fc8e3cda4f",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "21"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"15-FXWlH0PvnD0L5vH8jwewd9mu5yg\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              67,
+              114,
+              101,
+              97,
+              116,
+              101,
+              100,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 73,
+          "responseSize": 21
+        },
+        "id": "4e87eaa1-5fe4-48e0-95c9-ef003209f8ba",
+        "assertions": [
+          {
+            "assertion": "HTTP 201 for /users",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "e8829c98-524a-434c-9d1e-2c9a9cb73c88",
+          "length": 12,
+          "cycles": 1,
+          "position": 9,
+          "iteration": 0,
+          "httpRequestId": "d5959cb1-64e8-4c1d-a67c-01fe22456822"
+        },
+        "item": {
+          "id": "7a3a4b0f-b942-4ed2-9bab-875d5062a2e6",
+          "name": "IT-3 Duplicate email",
+          "request": {
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userEmail\": \"student1@example.test\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Duplicate\",\n  \"userLastName\": \"Test\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5047872d-f1c8-40af-b9e7-e512d4199203",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Duplicate email returns 409', function () { pm.response.to.have.status(409); pm.expect(pm.response.json().error).to.match(/email already exists/i); });"
+                ],
+                "_lastExecutionId": "90e0b0e1-6004-4b67-9c00-0bc0ceb4df13"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "users"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "43f41cbd-9912-4137-a624-7e1f1bf0e590",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "190",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"student1@example.test\",\n  \"userPassword\": \"Postman123\",\n  \"userFirstName\": \"Duplicate\",\n  \"userLastName\": \"Test\",\n  \"userTel\": \"0812345678\",\n  \"dateOfBirth\": \"2000-01-15\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "17c831b9-b201-4b85-8bb6-c608331b3889",
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "33"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"21-120zSIiDX8zkedRfXspsapefAZY\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              69,
+              109,
+              97,
+              105,
+              108,
+              32,
+              97,
+              108,
+              114,
+              101,
+              97,
+              100,
+              121,
+              32,
+              101,
+              120,
+              105,
+              115,
+              116,
+              115,
+              46,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 72,
+          "responseSize": 33
+        },
+        "id": "7a3a4b0f-b942-4ed2-9bab-875d5062a2e6",
+        "assertions": [
+          {
+            "assertion": "Duplicate email returns 409",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "554f840b-5d44-47e4-a2d9-db367743469b",
+          "length": 12,
+          "cycles": 1,
+          "position": 10,
+          "iteration": 0,
+          "httpRequestId": "a6f792c5-bd57-493d-abc5-8c0a2ff25024"
+        },
+        "item": {
+          "id": "a1b3d808-f860-4ded-9529-eed457545947",
+          "name": "IT-4 Incomplete registration",
+          "request": {
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userEmail\": \"incomplete@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e1a5026a-e906-433e-b4c6-3c8b93f1900a",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Incomplete registration returns 400', function () { pm.response.to.have.status(400); pm.expect(pm.response.json().error).to.match(/missing mandatory fields/i); pm.expect(pm.response.json().missingFields).to.include('userPassword'); });"
+                ],
+                "_lastExecutionId": "b5b81ef7-48af-47e2-aab2-47a14503b9a1"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "users"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "8c1477db-b593-4397-9fca-ce6a5c76bc59",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "43",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userEmail\": \"incomplete@example.com\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "6660c1d0-c4e9-494c-88f1-0c8d1d2cb8ed",
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "125"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"7d-JZ1LZ09Es3IlFgI1297Kwhji64U\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              77,
+              105,
+              115,
+              115,
+              105,
+              110,
+              103,
+              32,
+              109,
+              97,
+              110,
+              100,
+              97,
+              116,
+              111,
+              114,
+              121,
+              32,
+              102,
+              105,
+              101,
+              108,
+              100,
+              115,
+              46,
+              34,
+              44,
+              34,
+              109,
+              105,
+              115,
+              115,
+              105,
+              110,
+              103,
+              70,
+              105,
+              101,
+              108,
+              100,
+              115,
+              34,
+              58,
+              91,
+              34,
+              117,
+              115,
+              101,
+              114,
+              80,
+              97,
+              115,
+              115,
+              119,
+              111,
+              114,
+              100,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              93,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 3,
+          "responseSize": 125
+        },
+        "id": "a1b3d808-f860-4ded-9529-eed457545947",
+        "assertions": [
+          {
+            "assertion": "Incomplete registration returns 400",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "111a543e-1d51-4b75-a41f-d170bdad6f01",
+          "length": 12,
+          "cycles": 1,
+          "position": 11,
+          "iteration": 0,
+          "httpRequestId": "5f174fc1-a594-4c42-83a1-e64919ec053d"
+        },
+        "item": {
+          "id": "ed89106f-e6ee-41bf-838c-7c8a3363ec92",
+          "name": "Verify all registrations and GET response",
+          "request": {
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "304def72-ada1-4d82-955b-e86ca57e433c",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('All 4 POST route variants registered a user', function () { pm.response.to.have.status(200); const users=pm.response.json(); pm.expect(users).to.have.length(7); const emails=['postmanSignupUsers','postmanSignupUser','postmanUser','postmanUsers'].map(function(k){return pm.collectionVariables.get(k).toLowerCase();}); emails.forEach(function(email){pm.expect(users.some(function(user){return user.userEmail===email;}),email).to.eql(true);}); users.forEach(function(user){pm.expect(user).not.to.have.property('userPassword');}); });"
+                ],
+                "_lastExecutionId": "cdc1df32-1f8e-447f-a2ec-c6746034e8ba"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3001",
+            "path": [
+              "users"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "2c839346-be19-4bbe-a7f4-8df4ecb93d7f",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:3001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "480356d1-eea8-467f-9f02-286d41b4ddb0",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1134"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"46e-iUIgUTEI9KMoO4B9+xLr20L9zvM\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 28 Sep 2026 09:40:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              112,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              46,
+              112,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              115,
+              105,
+              103,
+              110,
+              117,
+              112,
+              117,
+              115,
+              101,
+              114,
+              46,
+              49,
+              55,
+              57,
+              48,
+              53,
+              56,
+              56,
+              52,
+              53,
+              48,
+              54,
+              48,
+              51,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              80,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              48,
+              45,
+              48,
+              49,
+              45,
+              49,
+              53,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              54,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              112,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              46,
+              112,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              115,
+              105,
+              103,
+              110,
+              117,
+              112,
+              117,
+              115,
+              101,
+              114,
+              115,
+              46,
+              49,
+              55,
+              57,
+              48,
+              53,
+              56,
+              56,
+              52,
+              53,
+              48,
+              53,
+              49,
+              48,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              80,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              48,
+              45,
+              48,
+              49,
+              45,
+              49,
+              53,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              54,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              112,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              46,
+              112,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              117,
+              115,
+              101,
+              114,
+              46,
+              49,
+              55,
+              57,
+              48,
+              53,
+              56,
+              56,
+              52,
+              53,
+              48,
+              54,
+              57,
+              56,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              80,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              48,
+              45,
+              48,
+              49,
+              45,
+              49,
+              53,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              54,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              112,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              46,
+              112,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              117,
+              115,
+              101,
+              114,
+              115,
+              46,
+              49,
+              55,
+              57,
+              48,
+              53,
+              56,
+              56,
+              52,
+              53,
+              48,
+              56,
+              48,
+              54,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              80,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              48,
+              45,
+              48,
+              49,
+              45,
+              49,
+              53,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              54,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              49,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              79,
+              110,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              49,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              49,
+              45,
+              48,
+              49,
+              45,
+              48,
+              49,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              53,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              50,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              119,
+              111,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              50,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              50,
+              45,
+              48,
+              50,
+              45,
+              48,
+              50,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              52,
+              125,
+              44,
+              123,
+              34,
+              117,
+              115,
+              101,
+              114,
+              69,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              115,
+              116,
+              117,
+              100,
+              101,
+              110,
+              116,
+              51,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              116,
+              101,
+              115,
+              116,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              70,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              109,
+              112,
+              108,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              76,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              84,
+              104,
+              114,
+              101,
+              101,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              84,
+              101,
+              108,
+              34,
+              58,
+              34,
+              48,
+              56,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              51,
+              34,
+              44,
+              34,
+              100,
+              97,
+              116,
+              101,
+              79,
+              102,
+              66,
+              105,
+              114,
+              116,
+              104,
+              34,
+              58,
+              34,
+              50,
+              48,
+              48,
+              51,
+              45,
+              48,
+              51,
+              45,
+              48,
+              51,
+              34,
+              44,
+              34,
+              97,
+              103,
+              101,
+              34,
+              58,
+              50,
+              51,
+              125,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 3,
+          "responseSize": 1134
+        },
+        "id": "ed89106f-e6ee-41bf-838c-7c8a3363ec92",
+        "assertions": [
+          {
+            "assertion": "All 4 POST route variants registered a user",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 3119
+    },
+    "failures": [],
+    "error": null
+  }
+}

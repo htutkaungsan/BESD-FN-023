@@ -1,0 +1,200 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-09-28T09:22:23.697Z",
+    "end": "2026-09-28T09:22:24.054Z",
+    "duration": 357,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "beb1caff-c3e7-4dd8-8b33-1117cfaa71a9",
+      "title": "",
+      "fullFile": "/Users/sirius/Downloads/BESD-FN-023/test/user.integration.test.js",
+      "file": "/test/user.integration.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a31aec90-b93c-4ea9-945d-6d9c276e5873",
+          "title": "User integration API",
+          "fullFile": "/Users/sirius/Downloads/BESD-FN-023/test/user.integration.test.js",
+          "file": "/test/user.integration.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"User integration API\"",
+              "fullTitle": "User integration API \"before all\" hook in \"User integration API\"",
+              "timedOut": false,
+              "duration": 83,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await resetSampleData();",
+              "err": {},
+              "uuid": "5e889cba-8626-4249-8ac5-d34e8165d24b",
+              "parentUUID": "a31aec90-b93c-4ea9-945d-6d9c276e5873",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"User integration API\"",
+              "fullTitle": "User integration API \"after all\" hook in \"User integration API\"",
+              "timedOut": false,
+              "duration": 14,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await resetSampleData(); await pool.end();",
+              "err": {},
+              "uuid": "ba4cf633-af1b-4c10-88be-387422dd7726",
+              "parentUUID": "a31aec90-b93c-4ea9-945d-6d9c276e5873",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "IT-1 retrieves all 3 users without passwords",
+              "fullTitle": "User integration API IT-1 retrieves all 3 users without passwords",
+              "timedOut": false,
+              "duration": 19,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(app).get('/users');\nexpect(response.status).to.equal(200);\nexpect(response.body).to.be.an('array').with.length(3);\nexpect(response.body[0]).to.have.property('age').that.is.a('number');\nfor (const user of response.body) expect(user).not.to.have.property('userPassword');",
+              "err": {},
+              "uuid": "12cffbae-70b8-455a-ba51-1d841d0ae5f3",
+              "parentUUID": "a31aec90-b93c-4ea9-945d-6d9c276e5873",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "IT-2 creates a user and increases the database count to 4",
+              "fullTitle": "User integration API IT-2 creates a user and increases the database count to 4",
+              "timedOut": false,
+              "duration": 162,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(app).post('/users').send({\n  userEmail: 'new.student@example.com', userPassword: 'abc12345', userFirstName: 'New',\n  userLastName: 'Student', userTel: '0812345678', dateOfBirth: '2000-01-15',\n});\nexpect(response.status).to.equal(201);\nexpect(response.body.message).to.equal('Created');\nconst [[count]] = await pool.execute('SELECT COUNT(*) AS total FROM `user`');\nexpect(count.total).to.equal(4);\nconst [[stored]] = await pool.execute('SELECT userPassword FROM `user` WHERE userEmail = ?', ['new.student@example.com']);\nexpect(stored.userPassword).not.to.equal('abc12345');\nexpect(await bcrypt.compare('abc12345', stored.userPassword)).to.equal(true);",
+              "err": {},
+              "uuid": "dde5bb38-ab24-493e-a9aa-5e72ba027855",
+              "parentUUID": "a31aec90-b93c-4ea9-945d-6d9c276e5873",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "IT-3 rejects a duplicate email",
+              "fullTitle": "User integration API IT-3 rejects a duplicate email",
+              "timedOut": false,
+              "duration": 73,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(app).post('/users').send({\n  userEmail: 'daranporn@gmail.com', userPassword: 'abc12345', userFirstName: 'Test',\n  userLastName: 'Duplicate', userTel: '0812345678', dateOfBirth: '2000-01-15',\n});\nexpect(response.status).to.equal(409);\nexpect(response.body.error).to.match(/email already exists/i);",
+              "err": {},
+              "uuid": "77c56e2f-e24a-4015-964f-dae9b0363436",
+              "parentUUID": "a31aec90-b93c-4ea9-945d-6d9c276e5873",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "IT-4 rejects incomplete registration data",
+              "fullTitle": "User integration API IT-4 rejects incomplete registration data",
+              "timedOut": false,
+              "duration": 1,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(app).post('/users').send({ userEmail: 'incomplete@example.com' });\nexpect(response.status).to.equal(400);\nexpect(response.body.error).to.match(/missing mandatory fields/i);\nexpect(response.body.missingFields).to.include('userPassword');",
+              "err": {},
+              "uuid": "c9d74264-c522-4806-8590-223fc0402b37",
+              "parentUUID": "a31aec90-b93c-4ea9-945d-6d9c276e5873",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "12cffbae-70b8-455a-ba51-1d841d0ae5f3",
+            "dde5bb38-ab24-493e-a9aa-5e72ba027855",
+            "77c56e2f-e24a-4015-964f-dae9b0363436",
+            "c9d74264-c522-4806-8590-223fc0402b37"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 255,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.8.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "integration-tests",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "test-report",
+        "reportFilename": "integration-tests",
+        "html": "true",
+        "json": "true"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
